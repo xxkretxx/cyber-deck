@@ -1,5 +1,5 @@
 """
-CYBER-DECK v3.0 - Multi-Level Hacker Game
+CYBER-DECK v3.1 - Multi-Level Hacker Game
 Requirements: pip install colorama pygame numpy
 """
 
@@ -15,13 +15,13 @@ sys.setrecursionlimit(100000)
 #  to your GitHub repo, then fill in the two URLs below.
 # ════════════════════════════════════════════════════════════════
 
-VERSION = "3.0"
+VERSION = "3.1"
 
 # Replace with your actual GitHub raw URLs after creating the repo:
 #   VERSION_URL = "https://raw.githubusercontent.com/YOU/REPO/main/version.txt"
 #   SCRIPT_URL  = "https://raw.githubusercontent.com/YOU/REPO/main/cyber_deck.py"
-VERSION_URL = ""
-SCRIPT_URL  = ""
+VERSION_URL = "https://raw.githubusercontent.com/YOU/REPO/main/cyber_deck.py"
+SCRIPT_URL  = "https://raw.githubusercontent.com/YOU/REPO/main/version.txt"
 
 
 def check_for_update(print_fn):
@@ -237,7 +237,7 @@ def terminal_phase():
         time.sleep(0.06)
 
     time.sleep(0.3)
-    slow_print("          [ v3.0  //  MULTI-NODE BREACH EDITION ]", 0.035, G + BD)
+    slow_print("          [ v3.1  //  MULTI-NODE BREACH EDITION ]", 0.035, G + BD)
 
     # Animated divider — prints one char at a time in green
     sys.stdout.write(G)
