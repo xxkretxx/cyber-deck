@@ -20,8 +20,8 @@ VERSION = "3.1"
 # Replace with your actual GitHub raw URLs after creating the repo:
 #   VERSION_URL = "https://raw.githubusercontent.com/YOU/REPO/main/version.txt"
 #   SCRIPT_URL  = "https://raw.githubusercontent.com/YOU/REPO/main/cyber_deck.py"
-VERSION_URL = "https://raw.githubusercontent.com/YOU/REPO/main/cyber_deck.py"
-SCRIPT_URL  = "https://raw.githubusercontent.com/YOU/REPO/main/version.txt"
+VERSION_URL = "https://raw.githubusercontent.com/xxkretxx/cyber-deck/refs/heads/main/cyber_deck.py"
+SCRIPT_URL  = "https://raw.githubusercontent.com/xxkretxx/cyber-deck/refs/heads/main/version.txt"
 
 
 def check_for_update(print_fn):
