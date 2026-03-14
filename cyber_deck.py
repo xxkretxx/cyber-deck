@@ -3,7 +3,9 @@ CYBER-DECK v3.0 - Multi-Level Hacker Game
 Requirements: pip install colorama pygame numpy
 """
 
-import sys, time, random, math, os, subprocess
+import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
+import sys, time, random, math, subprocess
 import numpy as np
 sys.setrecursionlimit(100000)
 
@@ -261,7 +263,7 @@ def terminal_phase():
     print()
     # Auth box — yellow
     slow_print("  " + TL + HZ * 44 + TR, 0.006, Y + BD)
-    slow_print("  " + VT + "       USER AUTHORIZATION REQUIRED         " + VT, 0.006, Y + BD)
+    slow_print("  " + VT + "       USER AUTHORIZATION REQUIRED          " + VT, 0.006, Y + BD)
     slow_print("  " + BLC + HZ * 44 + BRC, 0.006, Y + BD)
     print()
 
@@ -277,7 +279,7 @@ def terminal_phase():
         ("  AES-256 Encryption     ", 0.9, "OK"),
         ("  Bypassing firewalls    ", 1.4, "OK"),
         ("  MAC anonymization      ", 0.8, "OK"),
-        ("  Scanning 5 target nodes", 1.5, "OK"),
+        ("  Scanning 50 target nodes", 1.5, "OK"),
         ("  Obtaining root access  ", 1.7, "DONE"),
     ]:
         progress_bar(label, dur, status)
@@ -625,6 +627,26 @@ def game_phase(nickname: str):
 
     screen = pygame.display.set_mode((W, H))
     pygame.display.set_caption(f"CYBER-DECK v3.0  //  {nickname}@root")
+    def resource_path(filename):
+        if getattr(sys, "_MEIPASS", None):
+            return os.path.join(sys._MEIPASS, filename)
+        return os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
+
+    try:
+        icon_img = pygame.image.load(resource_path("icon.png"))
+        icon_img = pygame.transform.scale(icon_img, (32, 32))
+        pygame.display.set_icon(icon_img)
+        # Wymusza ikonę przez Windows API (pasek tytułu)
+        if os.name == "nt" and os.path.exists(resource_path("icon.ico")):
+            import ctypes
+            hwnd = pygame.display.get_wm_info()["window"]
+            ico  = ctypes.windll.user32.LoadImageW(
+                0, resource_path("icon.ico"), 1, 0, 0, 0x10 | 0x2
+            )
+            ctypes.windll.user32.SendMessageW(hwnd, 0x80, 0, ico)
+            ctypes.windll.user32.SendMessageW(hwnd, 0x80, 1, ico)
+    except Exception as e:
+        print(f"  [WARNING] Nie można wczytać ikony: {e}")
     clock  = pygame.time.Clock()
 
     # Fonts — try Consolas first (best for hacker aesthetic), fallback chain
